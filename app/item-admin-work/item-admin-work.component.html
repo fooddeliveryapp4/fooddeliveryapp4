@@ -1,0 +1,43 @@
+<div style="width: 50%;background-color: rgb(246, 125, 82);">
+    <form style="width: 50%;margin-left: 25%;" (ngSubmit)=" onSubmitItem()" class="form-horizontal" #myForm="ngForm">
+        <div class="mb-3">
+            <label class="form-label">Item Name</label>
+            <input type="text" class="form-control" [(ngModel)]="i.itemName" id="imageName" name="imageName"  #itemName="ngModel" required pattern="[0-9]*[a-zA-Z_]+[0-9]*">
+            <div *ngIf="itemName.invalid">
+                <span style="color: red;" *ngIf="itemName.errors?.['required']">Item Name is required Field</span>
+                <span style="color:red;" *ngIf="itemName.errors?.['pattern']">Item Name is not valid</span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">category</label>
+            <input type="text" class="form-control" [(ngModel)]="i.category" id="category" name="category"  #itemCat="ngModel" required pattern="[0-9]*[a-zA-Z_]+[0-9]*">
+            <div *ngIf="itemCat.invalid">
+                <span style="color: red;" *ngIf="itemCat.errors?.['required']">Item category is required Field</span>
+                <span style="color:red;" *ngIf="itemCat.errors?.['pattern']">Item category is not valid</span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">cost</label>
+            <input type="number" class="form-control" [(ngModel)]="i.cost" id="cost" name="cost" pattern="[0-9]+(\\.[0-9][0-9]?)?" #resNum="ngModel" required>
+            <div *ngIf="resNum.invalid">
+                <span style="color: red;" *ngIf="resNum.errors?.['required']">
+
+                    cost is required Field
+                </span>
+                <span style="color: red;" *ngIf="resNum.errors?.['pattern']">
+                    Cost is not valid
+                </span>
+            </div>
+            <span style="color: rgb(4, 205, 51);" *ngIf="resNum.valid">
+                Cost is valid
+            </span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Image Name</label>
+            <input type="text" class="form-control" [(ngModel)]="i.imageName" id="image" name="image">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="myForm.form.invalid">Submit</button>
+    </form>
+</div>
+<br>
+<app-item-view></app-item-view>
